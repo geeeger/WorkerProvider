@@ -1,1 +1,2 @@
-export default class WorkerProvider {}
+export default class WorkerProvider {
+}

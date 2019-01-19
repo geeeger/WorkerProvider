@@ -17,6 +17,6 @@ class Worker {
 
 
 it('should exist', () => {
-    const wp = new WorkerProvider('./worker');
+    const wp = new WorkerProvider();
     expect(wp).toBeDefined();
 })
