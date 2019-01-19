@@ -12,6 +12,7 @@
     "build:prod": "webpack --mode=production",
     "build": "npm run build:dev && npm run build:prod",
     "clean": "rimraf lib coverage",
+    "codecov": "codecov",
     "preversion": "npm test",
     "version": "npm run build && git add -A lib",
     "postversion": "git push --tags origin"
@@ -37,6 +38,7 @@
     "@commitlint/config-conventional": "^7.3.1",
     "@types/jest": "^23.3.13",
     "@types/node": "^10.12.18",
+    "codecov": "^3.1.0",
     "husky": "^1.3.1",
     "jest": "^23.6.0",
     "rimraf": "^2.6.3",
