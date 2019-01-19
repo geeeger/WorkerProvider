@@ -36,8 +36,7 @@ const config = {
                 },
             },
         ],
-    },
-    plugins: plugins,
+    }
 };
 
 module.exports = (_, argv) => {
