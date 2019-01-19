@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const config = {
     entry: './src/index.ts',
@@ -45,8 +46,9 @@ module.exports = (_, argv) => {
 
     if (argv.mode === 'production') {
         config.output.filename = 'index.min.js';
-        config.plugins = [
-            new webpack.optimize.UglifyJsPlugin()
+        config.optimization = {};
+        config.optimization.minimizer = [
+            new UglifyJsPlugin()
         ]
     }
     return config;
