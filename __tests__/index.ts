@@ -1,22 +1,22 @@
-import WorkerProvider from '../src/index';
+import WorkerProvider from "../src/index";
 class Worker {
-    path: string;
+    public path: string;
     constructor(path) {
         this.path = path;
     }
 
-    onmessage(fn) {
+    public onmessage(fn) {
+        // rewrite
     }
 
-    postMessage(message) {
-        this.onmessage(new MessageEvent('message', {
-            data: message
+    public postMessage(message) {
+        this.onmessage(new MessageEvent("message", {
+            data: message,
         }));
     }
 }
 
-
-it('should exist', () => {
+it("should exist", () => {
     const wp = new WorkerProvider();
     expect(wp).toBeDefined();
-})
+});
