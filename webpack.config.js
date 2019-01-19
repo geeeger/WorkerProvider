@@ -13,14 +13,12 @@ const config = {
         libraryExport: 'default'
     },
     module: {
-        loaders: [
-            {
-                test: /\.ts$/,
-                exclude: /(node_modules)/,
-                loader: 'ts-loader',
-            },
-        ],
         rules: [
+            // {
+            //     test: /\.ts$/,
+            //     exclude: /(node_modules)/,
+            //     loader: 'ts-loader',
+            // },
             {
                 test: /\.ts$/,
                 use: ['ts-loader'],
