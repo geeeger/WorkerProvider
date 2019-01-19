@@ -1,6 +1,6 @@
 {
   "name": "worker-provider",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "a manager for worker",
   "main": "./lib/index.min.js",
   "scripts": {
