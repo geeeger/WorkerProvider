@@ -1,8 +1,12 @@
 {
   "name": "worker-provider",
   "version": "1.0.0",
+  "files": [
+    "lib/"
+  ],
   "description": "a manager for worker",
-  "main": "./lib/index.min.js",
+  "main": "lib/index.min.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "test": "jest --coverage",
     "test:watch": "jest -- --watch --no-cache",
