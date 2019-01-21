@@ -4,7 +4,7 @@ import { IMyWorker, IWorkerMessage, IWorkersProvider } from "./interface";
 export default class WorkerProvider extends EventEmitter implements IWorkersProvider {
     public workers: IMyWorker[];
     public cpus: number;
-    public messages: IWorkerMessage[];
+    public messages: any[];
     constructor(workerPath: string) {
         super();
         this.workers = [];
@@ -44,12 +44,12 @@ export default class WorkerProvider extends EventEmitter implements IWorkersProv
             }
             const message = this.messages.pop();
             idleWorker.buzy = true;
-            idleWorker.instance.postMessage(message);
+            idleWorker.instance.postMessage.apply(idleWorker.instance, message);
         }
     }
 
-    public send(message: IWorkerMessage) {
-        this.messages.push(message);
+    public send(message: IWorkerMessage, transfer?: Transferable[]) {
+        this.messages.push([message, transfer]);
         this.run();
     }
 
