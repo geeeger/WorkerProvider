@@ -51,24 +51,27 @@ wp1.send({
 ## declaration
 
 ```typescript
-interface IMyWorker {
+import { EventEmitter } from "events";
+
+export interface IMyWorker {
     buzy: boolean;
     instance: Worker;
     [key: string]: any;
 }
 
-interface IWorkerMessage {
+export interface IWorkerMessage {
     channel: string;
     payload?: any;
 }
 
-interface IWorkersProvider extends EventEmitter {
+export interface IWorkersProvider extends EventEmitter {
     workers: IMyWorker[];
     cpus: number;
     messages: IWorkerMessage[];
     onmessage(e: any): void;
-    send(message: IWorkerMessage): void;
+    send(message: IWorkerMessage, transfer?: Transferable[]): void;
     run(): void;
     destroy(): void;
 }
+
 ```
