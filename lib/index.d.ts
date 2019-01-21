@@ -4,10 +4,10 @@ import { IMyWorker, IWorkerMessage, IWorkersProvider } from "./interface";
 export default class WorkerProvider extends EventEmitter implements IWorkersProvider {
     workers: IMyWorker[];
     cpus: number;
-    messages: IWorkerMessage[];
+    messages: any[];
     constructor(workerPath: string);
     onmessage(e: any): void;
     run(): void;
-    send(message: IWorkerMessage): void;
+    send(message: IWorkerMessage, transfer?: Transferable[]): void;
     destroy(): void;
 }

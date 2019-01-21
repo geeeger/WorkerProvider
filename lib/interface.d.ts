@@ -14,7 +14,7 @@ export interface IWorkersProvider extends EventEmitter {
     cpus: number;
     messages: IWorkerMessage[];
     onmessage(e: any): void;
-    send(message: IWorkerMessage): void;
+    send(message: IWorkerMessage, transfer?: Transferable[]): void;
     run(): void;
     destroy(): void;
 }
