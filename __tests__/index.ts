@@ -34,7 +34,6 @@ window.Worker = Worker;
 
 it("worker-provider should work", (done) => {
     const wp = new WorkerProvider('./fakepath');
-    console.log(wp);
     wp.on('test', (data) => {
         expect(data).toBe(1);
     });
@@ -76,4 +75,17 @@ it("if hardwareConcurrency is undefined", (done) => {
     const wp = new WorkerProvider('./fakepath');
     expect(wp.cpus).toBe(1);
     done();
+});
+
+// JSDOM does not implement URL.createObjectURL
+
+Object.defineProperty(window.URL, 'createObjectURL', {
+    value: () => {
+        return 'fake'
+    }
+});
+
+it('static isTransferablesSupported()', () => {
+    // because Worker is mocked
+    expect(WorkerProvider.isTransferablesSupported()).toBeFalsy();
 });

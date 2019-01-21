@@ -2,6 +2,25 @@ import { EventEmitter } from "events";
 import { IMyWorker, IWorkerMessage, IWorkersProvider } from "./interface";
 
 export default class WorkerProvider extends EventEmitter implements IWorkersProvider {
+    static isTransferablesSupported() {
+        return (() => {
+            const buffer = new ArrayBuffer(1);
+            try {
+                const blob = new Blob([''], {
+                    type: 'text/javascript'
+                });
+                const urlObj = URL.createObjectURL(blob);
+                
+                const worker = new Worker(urlObj);
+                worker.postMessage(buffer, [
+                    buffer
+                ]);
+            } catch (e) {
+                // nothing to do
+            }
+            return !Boolean(buffer.byteLength);
+        })();
+    }
     public workers: IMyWorker[];
     public cpus: number;
     public messages: any[];
