@@ -35,8 +35,10 @@ window.Worker = Worker;
 
 it("worker-provider should work", (done) => {
     const wp = new WorkerProvider('./fakepath');
-    wp.on('test', (data) => {
-        expect(data).toBe(1);
+    wp.on('test', (error, data) => {
+        if (!error) {
+            expect(data).toBe(1);
+        }
     });
 
     wp.send({

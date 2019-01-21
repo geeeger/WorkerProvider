@@ -76,8 +76,8 @@ export default class WorkerProvider extends EventEmitter implements IWorkersProv
                 this.run();
             }
         }
-        const { channel, payload } = e.data;
-        this.emit(channel, payload);
+        const { channel, payload, error } = e.data;
+        this.emit(channel, error, payload);
     }
 
     public run() {
