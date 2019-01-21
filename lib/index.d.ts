@@ -3,6 +3,7 @@ import { EventEmitter } from "events";
 import { IMyWorker, IWorkerMessage, IWorkersProvider } from "./interface";
 export default class WorkerProvider extends EventEmitter implements IWorkersProvider {
     static isTransferablesSupported(): boolean;
+    static asyncFnMover(fn: (data: IWorkerMessage) => Promise<IWorkerMessage>): string;
     workers: IMyWorker[];
     cpus: number;
     messages: any[];
