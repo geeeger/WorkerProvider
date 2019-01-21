@@ -6,7 +6,7 @@
 
 ```javascript
 const wp = new WorkerProvider('./worker/path.js');
-wp.on('channel', (payload) => {
+wp.on('channelName', (payload) => {
     console.log(payload);
 });
 
@@ -20,14 +20,32 @@ wp.send({
 wp.destroy();
 
 // if your browser support transferable object
-
 if (WorkerProvider.isTransferablesSupported()) {
-    const transferableObj = new UintArray(1);
+    const transferableObj = new Uint8Array(1);
     wp.send({
         channel: 'channelName',
         payload: transferableObj
     }, [ transferableObj.buffer ]);
 }
+
+// if you need make a worker to do some thing
+var yourAction = WorkerProvider.asyncFnMover(function calc(data) {
+    var payload = data.payload;
+    var channel = data.channel;
+    payload++;
+    return Promise.resolve({
+        channel: channel,
+        payload: payload
+    });
+};
+const wp1 = new WorkerProvider(yourAction);
+wp1.on('plus1', (payload) => {
+    console.log(payload);
+});
+wp1.send({
+    channel: 'plus1',
+    payload: 1
+});
 ```
 
 ## declaration
