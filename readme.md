@@ -18,6 +18,16 @@ wp.send({
 
 // destory it
 wp.destroy();
+
+// if your browser support transferable object
+
+if (WorkerProvider.isTransferablesSupported()) {
+    const transferableObj = new UintArray(1);
+    wp.send({
+        channel: 'channelName',
+        payload: transferableObj
+    }, [ transferableObj.buffer ]);
+}
 ```
 
 ## declaration

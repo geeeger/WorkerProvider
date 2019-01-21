@@ -4,6 +4,8 @@ import { IMyWorker, IWorkerMessage, IWorkersProvider } from "./interface";
 export default class WorkerProvider extends EventEmitter implements IWorkersProvider {
     public static isTransferablesSupported() {
         return (() => {
+            // See
+            // https://developers.google.com/web/updates/2011/12/Transferable-Objects-Lightning-Fast
             const buffer = new ArrayBuffer(1);
             try {
                 const blob = new Blob([""], {
