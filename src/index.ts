@@ -23,6 +23,30 @@ export default class WorkerProvider extends EventEmitter implements IWorkersProv
             return !Boolean(buffer.byteLength);
         })();
     }
+    public static asyncFnMover(fn: (data: IWorkerMessage) => Promise<IWorkerMessage>): string {
+        const blob = new Blob([`
+            $$=${fn};
+            onmessage=function (e) {
+                Promise.resolve(function() {
+                        return $$.apply($$, e.data);
+                    })
+                    .then(
+                        function (res) {
+                            postMessage(res);
+                        },
+                        function (err) {
+                            postMessage({
+                                channel: e.data.channel,
+                                error: err
+                            });
+                        }
+                    )
+            };
+        `], {
+            type: "text/javascript",
+        });
+        return URL.createObjectURL(blob);
+    }
     public workers: IMyWorker[];
     public cpus: number;
     public messages: any[];

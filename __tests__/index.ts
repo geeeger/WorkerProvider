@@ -1,4 +1,5 @@
 import WorkerProvider from "../src/index";
+import { IWorkerMessage } from "../src/interface";
 
 class Worker {
     public path: string;
@@ -89,3 +90,14 @@ it('static isTransferablesSupported()', () => {
     // because Worker is mocked
     expect(WorkerProvider.isTransferablesSupported()).toBeFalsy();
 });
+
+it('static asyncFnMover()', () => {
+    expect(typeof WorkerProvider.asyncFnMover(function calc(data: IWorkerMessage) {
+        let { payload, channel } = data;
+        payload++;
+        return Promise.resolve({
+            channel: channel,
+            payload: payload
+        });
+    })).toBe('string');
+})
