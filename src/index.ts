@@ -17,6 +17,7 @@ export default class WorkerProvider extends EventEmitter implements IWorkersProv
                 worker.postMessage(buffer, [
                     buffer,
                 ]);
+                worker.terminate();
             } catch (e) {
                 // nothing to do
             }
