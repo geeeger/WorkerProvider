@@ -1,3 +1,8 @@
+<a name="1.3.4"></a>
+## [1.3.4](https://github.com/geeeger/WorkerProvider/compare/v1.3.3...v1.3.4) (2019-01-28)
+
+
+
 <a name="1.3.3"></a>
 ## [1.3.3](https://github.com/geeeger/WorkerProvider/compare/v1.3.2...v1.3.3) (2019-01-28)
 
