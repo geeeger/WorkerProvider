@@ -31,7 +31,10 @@
     "Worker",
     "worker-manager"
   ],
-  "author": "geeeger",
+  "author": {
+    "name": "geeeger",
+    "email": "lph1988520@sina.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/geeeger/WorkerProvider/issues"
