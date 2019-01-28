@@ -76,3 +76,7 @@ export interface IWorkersProvider extends EventEmitter {
 }
 
 ```
+
+## ChangeLog
+
+[here](./CHANGELOG.md)
