@@ -43,19 +43,19 @@ it("worker-provider should work", (done) => {
 
     wp.send({
         channel: "test",
-        payload: 1
+        payload: 1,
     });
     wp.send({
         channel: "test",
-        payload: 1
+        payload: 1,
     });
     wp.send({
         channel: "test",
-        payload: 1
+        payload: 1,
     });
     wp.send({
         channel: "test",
-        payload: 1
+        payload: 1,
     });
     wp.send({
         channel: "test",
@@ -73,7 +73,7 @@ it("if hardwareConcurrency is undefined", (done) => {
     Object.defineProperty(window.navigator, "hardwareConcurrency", {
         get() {
             return undefined;
-        }
+        },
     });
     const wp = new WorkerProvider("./fakepath");
     expect(wp.cpus).toBe(1);
