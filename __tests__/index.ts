@@ -14,8 +14,8 @@ class Worker {
     public postMessage(message) {
         setTimeout(() => {
             this.onmessage({
+                data: message,
                 target: this,
-                data: message
             });
         }, 500);
     }
@@ -25,11 +25,11 @@ class Worker {
     }
 }
 
-interface Window {
+interface IWindow {
     [key: string]: any;
 }
 
-declare var window: Window;
+declare var window: IWindow;
 
 window.Worker = Worker;
 
@@ -59,7 +59,7 @@ it("worker-provider should work", (done) => {
     });
     wp.send({
         channel: 'test',
-        payload: 1
+        payload: 1,
     });
 
     setTimeout(() => {
@@ -84,8 +84,8 @@ it("if hardwareConcurrency is undefined", (done) => {
 
 Object.defineProperty(window.URL, 'createObjectURL', {
     value: () => {
-        return 'fake'
-    }
+        return 'fake';
+    },
 });
 
 it('static isTransferablesSupported()', () => {
@@ -95,11 +95,12 @@ it('static isTransferablesSupported()', () => {
 
 it('static asyncFnMover()', () => {
     expect(typeof WorkerProvider.asyncFnMover(function calc(data: IWorkerMessage) {
-        let { payload, channel } = data;
+        let payload = data.payload;
+        const channel = data.channel;
         payload++;
         return Promise.resolve({
-            channel: channel,
-            payload: payload
+            channel,
+            payload,
         });
     })).toBe('string');
-})
+});
