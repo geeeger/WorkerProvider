@@ -1,3 +1,13 @@
+<a name="1.3.6"></a>
+## [1.3.6](https://github.com/geeeger/WorkerProvider/compare/v1.3.5...v1.3.6) (2019-02-11)
+
+
+### Bug Fixes
+
+* fix package.json module ([b059229](https://github.com/geeeger/WorkerProvider/commit/b059229))
+
+
+
 <a name="1.3.5"></a>
 ## [1.3.5](https://github.com/geeeger/WorkerProvider/compare/v1.3.4...v1.3.5) (2019-01-28)
 
