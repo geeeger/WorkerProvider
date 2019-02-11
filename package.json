@@ -2,8 +2,10 @@
   "name": "worker-provider",
   "version": "1.3.5",
   "files": [
-    "lib/"
+    "lib/",
+    "src/"
   ],
+  "module": "src/index.ts",
   "description": "a manager for worker",
   "main": "lib/index.min.js",
   "types": "lib/index.d.ts",
