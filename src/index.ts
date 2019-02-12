@@ -107,4 +107,32 @@ export default class WorkerProvider extends EventEmitter implements IWorkersProv
         this.messages = null;
         this.removeAllListeners();
     }
+
+    public removeMessage(message: IWorkerMessage) {
+        if (this.messages) {
+            for (let index = 0; index < this.messages.length; index++) {
+                const element = this.messages[index][0];
+                if (element === message) {
+                    this.messages.splice(index, 1);
+                    break;
+                }
+            }
+        }
+    }
+
+    public removeMessagesByChannel(channel) {
+        if (this.messages) {
+            let index = 0;
+            let element = this.messages[index];
+            while (element) {
+                const message = element[0];
+                if (message.channel === channel) {
+                    this.messages.splice(index, 1);
+                } else {
+                    index++;
+                }
+                element = this.messages[index];
+            }
+        }
+    }
 }
