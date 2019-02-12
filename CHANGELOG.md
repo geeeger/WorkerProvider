@@ -1,3 +1,13 @@
+<a name="1.4.1"></a>
+## [1.4.1](https://github.com/geeeger/WorkerProvider/compare/v1.4.0...v1.4.1) (2019-02-12)
+
+
+### Bug Fixes
+
+* fix interface declare ([3c756c6](https://github.com/geeeger/WorkerProvider/commit/3c756c6))
+
+
+
 <a name="1.4.0"></a>
 # [1.4.0](https://github.com/geeeger/WorkerProvider/compare/v1.3.6...v1.4.0) (2019-02-12)
 
