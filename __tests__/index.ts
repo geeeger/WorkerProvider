@@ -127,16 +127,16 @@ it("removeMessage()", () => {
         [{
             channel: "test2",
             payload: 1,
-        }]
-    ]
+        }],
+    ];
     wp.messages = [].concat(messages);
-    wp.removeMessagesByChannel('test');
+    wp.removeMessagesByChannel("test");
     expect(wp.messages[0]).toEqual(messages[1]);
     wp.removeMessage(messages[1][0]);
     expect(wp.messages.length).toBe(1);
     wp.removeMessage(messages[1][0]);
     expect(wp.messages.length).toBe(1);
     wp.messages = null;
-    wp.removeMessagesByChannel('test');
+    wp.removeMessagesByChannel("test");
     wp.removeMessage(messages[1][0]);
 });
