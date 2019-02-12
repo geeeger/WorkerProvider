@@ -1,3 +1,13 @@
+<a name="1.4.0"></a>
+# [1.4.0](https://github.com/geeeger/WorkerProvider/compare/v1.3.6...v1.4.0) (2019-02-12)
+
+
+### Features
+
+* add method removeMessagesByChannel removeMessage ([84a413c](https://github.com/geeeger/WorkerProvider/commit/84a413c))
+
+
+
 <a name="1.3.6"></a>
 ## [1.3.6](https://github.com/geeeger/WorkerProvider/compare/v1.3.5...v1.3.6) (2019-02-11)
 

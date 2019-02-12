@@ -12,4 +12,6 @@ export default class WorkerProvider extends EventEmitter implements IWorkersProv
     run(): void;
     send(message: IWorkerMessage, transfer?: Transferable[]): void;
     destroy(): void;
+    removeMessage(message: IWorkerMessage): void;
+    removeMessagesByChannel(channel: any): void;
 }
