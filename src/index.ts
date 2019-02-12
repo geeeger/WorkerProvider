@@ -120,7 +120,7 @@ export default class WorkerProvider extends EventEmitter implements IWorkersProv
         }
     }
 
-    public removeMessagesByChannel(channel) {
+    public removeMessagesByChannel(channel: string) {
         if (this.messages) {
             let index = 0;
             let element = this.messages[index];

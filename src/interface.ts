@@ -19,4 +19,6 @@ export interface IWorkersProvider extends EventEmitter {
     send(message: IWorkerMessage, transfer?: Transferable[]): void;
     run(): void;
     destroy(): void;
+    removeMessage(message: IWorkerMessage): void;
+    removeMessagesByChannel(channel: string): void;
 }
