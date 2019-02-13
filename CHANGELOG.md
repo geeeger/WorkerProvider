@@ -1,3 +1,18 @@
+<a name="1.4.2"></a>
+## [1.4.2](https://github.com/geeeger/WorkerProvider/compare/v1.4.1...v1.4.2) (2019-02-13)
+
+
+### Bug Fixes
+
+* package.json module config fix ([6bde21f](https://github.com/geeeger/WorkerProvider/commit/6bde21f))
+
+
+### Performance Improvements
+
+* codacy check ([4b2fe14](https://github.com/geeeger/WorkerProvider/commit/4b2fe14))
+
+
+
 <a name="1.4.1"></a>
 ## [1.4.1](https://github.com/geeeger/WorkerProvider/compare/v1.4.0...v1.4.1) (2019-02-12)
 
