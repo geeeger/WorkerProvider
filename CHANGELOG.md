@@ -1,3 +1,8 @@
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/geeeger/WorkerProvider/compare/v1.4.2...v2.0.0) (2019-06-06)
+
+
+
 <a name="1.4.2"></a>
 ## [1.4.2](https://github.com/geeeger/WorkerProvider/compare/v1.4.1...v1.4.2) (2019-02-13)
 
