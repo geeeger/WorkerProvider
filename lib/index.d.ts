@@ -1,17 +1,17 @@
 /// <reference types="node" />
 import { EventEmitter } from "events";
-import { IMyWorker, IWorkerMessage, IWorkersProvider } from "./interface";
-export default class WorkerProvider extends EventEmitter implements IWorkersProvider {
+import { MyWorker, WorkerMessage, WorkersProvider, WorkerMessages } from "./interface";
+export default class WorkerProvider extends EventEmitter implements WorkersProvider {
     static isTransferablesSupported(): boolean;
-    static asyncFnMover(fn: (data: IWorkerMessage) => Promise<IWorkerMessage>): string;
-    workers: IMyWorker[];
+    static asyncFnMover(fn: (data: WorkerMessage) => Promise<WorkerMessage>): string;
+    workers: MyWorker[];
     cpus: number;
-    messages: any[];
+    messages: WorkerMessages[];
     constructor(workerPath: string);
-    onmessage(e: any): void;
+    onmessage(e: MessageEvent): void;
     run(): void;
-    send(message: IWorkerMessage, transfer?: Transferable[]): void;
+    send(message: WorkerMessage, transfer?: Transferable[]): void;
     destroy(): void;
-    removeMessage(message: IWorkerMessage): void;
+    removeMessage(message: WorkerMessage): void;
     removeMessagesByChannel(channel: string): void;
 }

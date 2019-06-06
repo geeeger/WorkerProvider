@@ -1,22 +1,23 @@
 /// <reference types="node" />
 import { EventEmitter } from "events";
-export interface IMyWorker {
+export interface MyWorker {
     buzy: boolean;
     instance: Worker;
     [key: string]: any;
 }
-export interface IWorkerMessage {
+export interface WorkerMessage {
     channel: string;
     payload?: any;
 }
-export interface IWorkersProvider extends EventEmitter {
-    workers: IMyWorker[];
+export declare type WorkerMessages = [WorkerMessage, Transferable[]?];
+export interface WorkersProvider extends EventEmitter {
+    workers: MyWorker[];
     cpus: number;
-    messages: IWorkerMessage[];
-    onmessage(e: any): void;
-    send(message: IWorkerMessage, transfer?: Transferable[]): void;
+    messages: WorkerMessages[];
+    onmessage(e: MessageEvent): void;
+    send(message: WorkerMessage, transfer?: Transferable[]): void;
     run(): void;
     destroy(): void;
-    removeMessage(message: IWorkerMessage): void;
+    removeMessage(message: WorkerMessage): void;
     removeMessagesByChannel(channel: string): void;
 }

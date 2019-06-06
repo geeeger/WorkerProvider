@@ -1,9 +1,9 @@
 import { EventEmitter } from "events";
-import { IMyWorker, IWorkerMessage, IWorkersProvider } from "./interface";
+import { MyWorker, WorkerMessage, WorkersProvider, WorkerMessages } from "./interface";
 
-export default class WorkerProvider extends EventEmitter implements IWorkersProvider {
-    public static isTransferablesSupported() {
-        return (() => {
+export default class WorkerProvider extends EventEmitter implements WorkersProvider {
+    public static isTransferablesSupported(): boolean {
+        return ((): boolean => {
             // See
             // https://developers.google.com/web/updates/2011/12/Transferable-Objects-Lightning-Fast
             const buffer = new ArrayBuffer(1);
@@ -24,7 +24,7 @@ export default class WorkerProvider extends EventEmitter implements IWorkersProv
             return !Boolean(buffer.byteLength);
         })();
     }
-    public static asyncFnMover(fn: (data: IWorkerMessage) => Promise<IWorkerMessage>): string {
+    public static asyncFnMover(fn: (data: WorkerMessage) => Promise<WorkerMessage>): string {
         const blob = new Blob([`
             $$=${fn};
             onmessage=function (e) {
@@ -48,16 +48,16 @@ export default class WorkerProvider extends EventEmitter implements IWorkersProv
         });
         return URL.createObjectURL(blob);
     }
-    public workers: IMyWorker[];
+    public workers: MyWorker[];
     public cpus: number;
-    public messages: any[];
-    constructor(workerPath: string) {
+    public messages: WorkerMessages[];
+    public constructor(workerPath: string) {
         super();
         this.workers = [];
         this.messages = [];
         this.cpus = window.navigator.hardwareConcurrency || 1;
         for (let i = 0; i < this.cpus; i++) {
-            const worker: IMyWorker = {
+            const worker: MyWorker = {
                 buzy: false,
                 instance: new Worker(workerPath),
             };
@@ -69,7 +69,7 @@ export default class WorkerProvider extends EventEmitter implements IWorkersProv
         }
     }
 
-    public onmessage(e: any) {
+    public onmessage(e: MessageEvent): void {
         for (let i = 0; i < this.cpus; i++) {
             const worker = this.workers[i];
             if (e.target === worker.instance) {
@@ -81,8 +81,8 @@ export default class WorkerProvider extends EventEmitter implements IWorkersProv
         this.emit(channel, error, payload);
     }
 
-    public run() {
-        const idles = this.workers.filter((worker: IMyWorker) => !worker.buzy);
+    public run(): void {
+        const idles = this.workers.filter((worker: MyWorker): boolean => !worker.buzy);
         for (let i = this.messages.length - 1; i >= 0; i--) {
             const idleWorker = idles.pop();
             if (!idleWorker) {
@@ -94,13 +94,13 @@ export default class WorkerProvider extends EventEmitter implements IWorkersProv
         }
     }
 
-    public send(message: IWorkerMessage, transfer?: Transferable[]) {
+    public send(message: WorkerMessage, transfer?: Transferable[]): void {
         this.messages.push([message, transfer]);
         this.run();
     }
 
-    public destroy() {
-        this.workers.forEach((worker: IMyWorker) => {
+    public destroy(): void {
+        this.workers.forEach((worker: MyWorker): void => {
             worker.instance.terminate();
         });
         this.workers = null;
@@ -108,7 +108,7 @@ export default class WorkerProvider extends EventEmitter implements IWorkersProv
         this.removeAllListeners();
     }
 
-    public removeMessage(message: IWorkerMessage) {
+    public removeMessage(message: WorkerMessage): void {
         if (this.messages) {
             for (let index = 0; index < this.messages.length; index++) {
                 const element = this.messages[index][0];
@@ -120,7 +120,7 @@ export default class WorkerProvider extends EventEmitter implements IWorkersProv
         }
     }
 
-    public removeMessagesByChannel(channel: string) {
+    public removeMessagesByChannel(channel: string): void {
         if (this.messages) {
             let index = 0;
             let element = this.messages[index];

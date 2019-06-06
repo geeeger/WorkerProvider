@@ -1,5 +1,5 @@
 import WorkerProvider from "../src/index";
-import { IWorkerMessage } from "../src/interface";
+import { WorkerMessage } from "../src/interface";
 
 class Worker {
     public path: string;
@@ -94,7 +94,7 @@ it("static isTransferablesSupported()", () => {
 });
 
 it("static asyncFnMover()", () => {
-    expect(typeof WorkerProvider.asyncFnMover(function calc(data: IWorkerMessage) {
+    expect(typeof WorkerProvider.asyncFnMover(function calc(data: WorkerMessage) {
         let payload = data.payload;
         const channel = data.channel;
         payload++;
