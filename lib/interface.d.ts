@@ -3,7 +3,6 @@ import { EventEmitter } from "events";
 export interface MyWorker {
     buzy: boolean;
     instance: Worker;
-    [key: string]: any;
 }
 export interface WorkerMessage {
     channel: string;

@@ -54,25 +54,41 @@ wp1.send({
 ```typescript
 import { EventEmitter } from "events";
 
-export interface IMyWorker {
+export interface MyWorker {
     buzy: boolean;
     instance: Worker;
-    [key: string]: any;
 }
-
-export interface IWorkerMessage {
+export interface WorkerMessage {
     channel: string;
     payload?: any;
 }
+export declare type WorkerMessages = [WorkerMessage, Transferable[]?];
 
-export interface IWorkersProvider extends EventEmitter {
-    workers: IMyWorker[];
+export interface WorkersProvider extends EventEmitter {
+    workers: MyWorker[];
     cpus: number;
-    messages: IWorkerMessage[];
-    onmessage(e: any): void;
-    send(message: IWorkerMessage, transfer?: Transferable[]): void;
+    messages: WorkerMessages[];
+    onmessage(e: MessageEvent): void;
+    send(message: WorkerMessage, transfer?: Transferable[]): void;
     run(): void;
     destroy(): void;
+    removeMessage(message: WorkerMessage): void;
+    removeMessagesByChannel(channel: string): void;
+}
+
+export default class WorkerProvider extends EventEmitter implements WorkersProvider {
+    static isTransferablesSupported(): boolean;
+    static asyncFnMover(fn: (data: WorkerMessage) => Promise<WorkerMessage>): string;
+    workers: MyWorker[];
+    cpus: number;
+    messages: WorkerMessages[];
+    constructor(workerPath: string);
+    onmessage(e: MessageEvent): void;
+    run(): void;
+    send(message: WorkerMessage, transfer?: Transferable[]): void;
+    destroy(): void;
+    removeMessage(message: WorkerMessage): void;
+    removeMessagesByChannel(channel: string): void;
 }
 
 ```
