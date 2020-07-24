@@ -1,17 +1,21 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/explicit-member-accessibility */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import WorkerProvider from "../src/index";
 import { WorkerMessage } from "../src/interface";
 
 class Worker {
     public path: string;
-    constructor(path) {
+    constructor(path: string) {
         this.path = path;
     }
 
-    public onmessage(e) {
+    public onmessage(_e) {
         // rewrite
     }
 
-    public postMessage(message) {
+    public postMessage(message: any) {
         setTimeout(() => {
             this.onmessage({
                 data: message,
@@ -25,11 +29,11 @@ class Worker {
     }
 }
 
-interface IWindow {
+interface FakeWindow {
     [key: string]: any;
 }
 
-declare var window: IWindow;
+declare var window: FakeWindow;
 
 window.Worker = Worker;
 
