@@ -1,5 +1,5 @@
 const path = require("path");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
 
 const config = {
     entry: "./src/index.ts",
@@ -14,11 +14,6 @@ const config = {
     },
     module: {
         rules: [
-            // {
-            //     test: /\.ts$/,
-            //     exclude: /(node_modules)/,
-            //     loader: "ts-loader",
-            // },
             {
                 test: /\.ts$/,
                 use: ["ts-loader"],
@@ -46,9 +41,7 @@ module.exports = (_, argv) => {
     if (argv.mode === "production") {
         config.output.filename = "index.min.js";
         config.optimization = {};
-        config.optimization.minimizer = [
-            new UglifyJsPlugin()
-        ];
+        config.optimization.minimizer = [new TerserPlugin()];
     }
     return config;
 };

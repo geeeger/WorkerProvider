@@ -8,7 +8,10 @@ export interface WorkerMessage {
     channel: string;
     payload?: any;
 }
-export declare type WorkerMessages = [WorkerMessage, Transferable[]?];
+export declare type WorkerMessages = [
+    WorkerMessage,
+    Transferable[]?
+];
 export interface WorkersProvider extends EventEmitter {
     workers: MyWorker[];
     cpus: number;

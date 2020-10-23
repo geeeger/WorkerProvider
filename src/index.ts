@@ -90,7 +90,8 @@ export default class WorkerProvider extends EventEmitter implements WorkersProvi
             }
             const message = this.messages.pop();
             idleWorker.buzy = true;
-            idleWorker.instance.postMessage.apply(idleWorker.instance, message);
+            // @ts-ignore
+            idleWorker.instance.postMessage(...message);
         }
     }
 
