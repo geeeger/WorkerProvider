@@ -1,3 +1,12 @@
+# [2.1.0](https://github.com/geeeger/WorkerProvider/compare/v2.0.2...v2.1.0) (2020-10-23)
+
+
+### Features
+
+* **build:** upgrade webpack ([6db6289](https://github.com/geeeger/WorkerProvider/commit/6db6289252dd27e0e7c3462bed3a61ac7c10e8e1))
+
+
+
 ## [2.0.2](https://github.com/geeeger/WorkerProvider/compare/v1.4.2...v2.0.2) (2020-07-24)
 
 
